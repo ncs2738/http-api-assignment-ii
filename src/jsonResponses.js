@@ -12,34 +12,30 @@ const respondJSONMeta = (request, response, status) => {
 };
 
 const getUsers = (request, response, requestMethod) => {
-  const responseJSON =  {};
+  const responseJSON = {};
 
-  if(requestMethod === "GET") responseJSON.users = users;
+  if (requestMethod === 'GET') responseJSON.users = users;
 
   respondJSON(request, response, 200, responseJSON);
 };
 
-const notFound = (request, response, requestMethod) =>
-{
-    const responseJSON = 
-    {
-        id: 'notFound',
-    };
+const notFound = (request, response, requestMethod) => {
+  const responseJSON = {
+    id: 'notFound',
+  };
 
-    if(requestMethod === "GET") responseJSON.message = 'The page you are looking for was not found.';
+  if (requestMethod === 'GET') responseJSON.message = 'The page you are looking for was not found.';
 
-    respondJSON(request, response, 404, responseJSON);
+  respondJSON(request, response, 404, responseJSON);
 };
 
 
-const addUser = (request, response, body) => 
-{
+const addUser = (request, response, body) => {
   const responseJSON = {
     message: 'Name and age are both required.',
   };
 
-  if (!body.name || !body.age) 
-  {
+  if (!body.name || !body.age) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
